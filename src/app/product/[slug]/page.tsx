@@ -55,6 +55,6 @@ export async function generateMetadata({ params }: ProductProps, parent?: Resolv
 	const product = await getProduct(slug);
 
 	return {
-		title: product.title
+		title: `AZ Store | ${product.title}`
 	};
 }
