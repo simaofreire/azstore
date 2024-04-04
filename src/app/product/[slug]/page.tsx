@@ -1,4 +1,5 @@
 import ReturnToHome from '@/app/_components/returnToHome';
+import { Metadata, ResolvingMetadata } from 'next';
 import ProductColors from './_components/productColors';
 import ProductDescription from './_components/productDescription';
 import ProductHeader from './_components/productHeader';
@@ -47,4 +48,13 @@ async function getProduct(slug: string) {
 	const product = await res.json();
 
 	return product;
+}
+
+export async function generateMetadata({ params }: ProductProps, parent?: ResolvingMetadata): Promise<Metadata> {
+	const slug = decodeURIComponent(params.slug);
+	const product = await getProduct(slug);
+
+	return {
+		title: product.title
+	};
 }
